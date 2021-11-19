@@ -18,8 +18,7 @@ class _LoginState extends State<Login> {
   bool showspiner = false;
   TextEditingController emailcontroler = TextEditingController();
   TextEditingController passwordcontroler = TextEditingController();
-  String email = '',
-      password = '';
+  String email = '', password = '';
   final _formkey = GlobalKey<FormState>();
 
   @override
@@ -27,28 +26,26 @@ class _LoginState extends State<Login> {
     return ModalProgressHUD(
       inAsyncCall: showspiner,
       child: Scaffold(
-        appBar:
-
-        AppBar(title: Text('Login'),),
-        body:
-
-        Column(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          backwardsCompatibility: false,
+          title: Text('Login'),
+        ),
+        body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-
             Text(
               'Login',
               style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 20,),
-
+            SizedBox(
+              height: 20,
+            ),
             Form(
               key: _formkey,
-              child:
-              Column(
+              child: Column(
                 children: [
-
                   TextFormField(
                     controller: emailcontroler,
                     keyboardType: TextInputType.emailAddress,
@@ -67,7 +64,6 @@ class _LoginState extends State<Login> {
                   SizedBox(
                     height: 20,
                   ),
-
                   TextFormField(
                     controller: passwordcontroler,
                     keyboardType: TextInputType.emailAddress,
@@ -88,7 +84,6 @@ class _LoginState extends State<Login> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-
               child: Mybutton(
                 title: 'Login',
                 width: double.infinity,
@@ -96,25 +91,28 @@ class _LoginState extends State<Login> {
                 onpress: () async {
                   if (_formkey.currentState!.validate()) {
                     setState(() {
-                      showspiner=true;
+                      showspiner = true;
                     });
                     try {
                       final user = await _auth.signInWithEmailAndPassword(
-                          email: email.toString().trim(), password: password
-                          .toString().trim());
-                      if(user!=null){
+                          email: email.toString().trim(),
+                          password: password.toString().trim());
+                      if (user != null) {
                         print('sucess');
                         toastMasseges('User Sucessfully Login');
                         setState(() {
-                          showspiner=false;
+                          showspiner = false;
                         });
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>HomScreen()));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => HomScreen()));
                       }
                     } catch (e) {
                       print(e.toString());
                       toastMasseges(e.toString());
                       setState(() {
-                        showspiner=true;
+                        showspiner = true;
                       });
                     }
                   }
@@ -126,7 +124,8 @@ class _LoginState extends State<Login> {
       ),
     );
   }
-  void toastMasseges(String masseg){
+
+  void toastMasseges(String masseg) {
     Fluttertoast.showToast(
         msg: masseg.toString(),
         toastLength: Toast.LENGTH_SHORT,
@@ -134,7 +133,6 @@ class _LoginState extends State<Login> {
         timeInSecForIosWeb: 1,
         backgroundColor: Colors.red,
         textColor: Colors.white,
-        fontSize: 16.0
-    );
+        fontSize: 16.0);
   }
 }

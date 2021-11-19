@@ -14,11 +14,13 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   FirebaseAuth _auth = FirebaseAuth.instance;
+
   bool showspiner = false;
   TextEditingController emailcontroler = TextEditingController();
+
   TextEditingController passwordcontroler = TextEditingController();
-  String email = '',
-      password = '';
+
+  String email = '', password = '';
   final _formkey = GlobalKey<FormState>();
 
   @override
@@ -26,8 +28,7 @@ class _SignUpState extends State<SignUp> {
     return ModalProgressHUD(
       inAsyncCall: showspiner,
       child: Scaffold(
-        body:
-        Column(
+        body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -35,7 +36,9 @@ class _SignUpState extends State<SignUp> {
               'Sign up',
               style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
             Form(
               key: _formkey,
               child: Column(
@@ -44,7 +47,7 @@ class _SignUpState extends State<SignUp> {
                     controller: emailcontroler,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
-                      hintText: 'Enter your email ',
+                      hintText: 'Enter your Email ',
                       prefixIcon: Icon(Icons.email),
                       border: OutlineInputBorder(),
                     ),
@@ -52,17 +55,18 @@ class _SignUpState extends State<SignUp> {
                       email = value;
                     },
                     validator: (value) {
-                      return value!.isEmpty ? 'enter valid email' : null;
+                      return value!.isEmpty ? 'Enter valid email' : null;
                     },
                   ),
                   SizedBox(
                     height: 20,
                   ),
                   TextFormField(
+                    obscureText: true,
                     controller: passwordcontroler,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
-                      hintText: 'enter your password',
+                      hintText: 'Enter your Password',
                       prefixIcon: Icon(Icons.lock),
                       border: OutlineInputBorder(),
                     ),
@@ -85,24 +89,24 @@ class _SignUpState extends State<SignUp> {
                 onpress: () async {
                   if (_formkey.currentState!.validate()) {
                     setState(() {
-                      showspiner=true;
+                      showspiner = true;
                     });
                     try {
                       final user = await _auth.createUserWithEmailAndPassword(
-                          email: email.toString().trim(), password: password
-                          .toString().trim());
-                      if(user!=null){
+                          email: email.toString().trim(),
+                          password: password.toString().trim());
+                      if (user != null) {
                         print('sucess');
-                      toastMasseges('user sucessfully created');
+                        toastMasseges('user sucessfully created');
                         setState(() {
-                          showspiner=false;
+                          showspiner = false;
                         });
                       }
                     } catch (e) {
                       print(e.toString());
                       toastMasseges(e.toString());
                       setState(() {
-                        showspiner=true;
+                        showspiner = true;
                       });
                     }
                   }
@@ -114,15 +118,15 @@ class _SignUpState extends State<SignUp> {
       ),
     );
   }
-  void toastMasseges(String masseg){
+
+  void toastMasseges(String masseg) {
     Fluttertoast.showToast(
         msg: masseg.toString(),
-        toastLength: Toast.LENGTH_SHORT,
+        toastLength: Toast.LENGTH_LONG,
         gravity: ToastGravity.CENTER,
         timeInSecForIosWeb: 1,
         backgroundColor: Colors.red,
         textColor: Colors.white,
-        fontSize: 16.0
-    );
+        fontSize: 16.0);
   }
 }

@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:870595041973:android:6c35842682a5ac62543cfc",
+        "mobilesdk_app_id": "1:870595041973:android:9fba6a50e4ac8c93543cfc",
         "android_client_info": {
-          "package_name": "com.example.untitled"
+          "package_name": "com.ikram.untitled"
         }
       },
       "oauth_client": [

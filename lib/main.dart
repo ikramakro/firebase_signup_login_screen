@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/Screen/Splash_Screen.dart';
 import 'Screen/FristScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home:FirstScreen()
+      home:SplashScreen()
     );
   }
 }
