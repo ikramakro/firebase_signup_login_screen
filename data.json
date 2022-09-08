@@ -1,6 +1,6 @@
 {
-  "version": "1.0.39",
-  "lastUpdated": "2022-07-01T18:22:50",
+  "version": "1.0.40",
+  "lastUpdated": "2022-09-08T15:59:28",
   "events": [
     {
       "id": "evt_1780640940409_3244",
@@ -234,6 +234,12 @@
       "id": "evt_1780641425831_1816",
       "timestamp": "2022-07-01T13:22:50.000Z",
       "action": "deploy",
+      "status": "ok"
+    },
+    {
+      "id": "evt_1780641425923_9242",
+      "timestamp": "2022-09-08T10:59:28.000Z",
+      "action": "sync",
       "status": "ok"
     }
   ]
